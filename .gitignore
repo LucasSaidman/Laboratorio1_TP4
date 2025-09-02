@@ -3,7 +3,6 @@
 
 # Log file
 *.log
-
 # BlueJ files
 *.ctxt
 
@@ -26,13 +25,13 @@ replay_pid*
 # archivos de configuracion de IDE
 *.nbattrs
 *.nbactions
-nbproject/private/private.properties
-nbproject/private/private.xml
-nbproject/private/
 
 # Carpetas de compilación/generadas automáticamente
 build/
 dist/
 nbbuild/
 nbdist/
-/Laboratorio1_TP3_Ej2/nbproject/private/
+
+# Ignorar archivos privados de NetBeans
+**/nbproject/private/private.properties
+**/nbproject/private/private.xml
