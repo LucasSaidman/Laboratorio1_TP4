@@ -28,13 +28,13 @@ public class JFrame extends javax.swing.JFrame {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        JmAlumno = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        JmMateria = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        JmRegistro = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        JmSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,29 +49,29 @@ public class JFrame extends javax.swing.JFrame {
             .addGap(0, 500, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Alumno");
+        JmAlumno.setText("Alumno");
 
         jMenuItem1.setText("Agregar Alumno");
-        jMenu1.add(jMenuItem1);
+        JmAlumno.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(JmAlumno);
 
-        jMenu2.setText("Materia");
+        JmMateria.setText("Materia");
 
         jMenuItem2.setText("Agregar Materia");
-        jMenu2.add(jMenuItem2);
+        JmMateria.add(jMenuItem2);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(JmMateria);
 
-        jMenu3.setText("Registro");
+        JmRegistro.setText("Registro");
 
         jMenuItem3.setText("Inscripcion a Materias");
-        jMenu3.add(jMenuItem3);
+        JmRegistro.add(jMenuItem3);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(JmRegistro);
 
-        jMenu4.setText("Salir");
-        jMenuBar1.add(jMenu4);
+        JmSalir.setText("Salir");
+        jMenuBar1.add(JmSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -132,11 +132,11 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu JmAlumno;
+    private javax.swing.JMenu JmMateria;
+    private javax.swing.JMenu JmRegistro;
+    private javax.swing.JMenu JmSalir;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

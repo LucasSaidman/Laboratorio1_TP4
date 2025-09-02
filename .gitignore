@@ -35,3 +35,4 @@ nbdist/
 # Ignorar archivos privados de NetBeans
 **/nbproject/private/private.properties
 **/nbproject/private/private.xml
+nbproject/private/
