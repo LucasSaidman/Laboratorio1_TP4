@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Colegio;
 
 import Controladores.Alumno;
@@ -14,10 +11,17 @@ import Vistas.VistaInscriptos;
 import java.util.HashSet;
 import javax.swing.*;
 
-/**
- *
- * @author Lucas
- */
+/** 
+    @author Grupo 6 
+    Luis Ezequiel Sosa
+    Lucas Saidman
+    Gimenez Diego Ruben
+    Carlos German Mecias Giacomelli
+    Tomas Migliozzi Badani
+    Luca Rodrigaño
+    Ignacio Rodriguez
+**/
+
 public class JFrame extends javax.swing.JFrame {
     
     public static final java.util.HashSet<Alumno> ALUMNOS = new HashSet<>();

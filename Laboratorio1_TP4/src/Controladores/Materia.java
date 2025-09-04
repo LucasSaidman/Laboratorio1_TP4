@@ -1,10 +1,16 @@
 package Controladores;
 
-/**
- *
- * @author GRUPO 6
- * Luis Ezequiel Sosa, Lucas Saidman, Gimenez Diego Ruben, Carlos German Mecias Giacomelli, Tomas Migliozzi badani, Luca Rodrigaño, Ignacio Rodriguez.
- */
+/** 
+    @author Grupo 6 
+    Luis Ezequiel Sosa
+    Lucas Saidman
+    Gimenez Diego Ruben
+    Carlos German Mecias Giacomelli
+    Tomas Migliozzi Badani
+    Luca Rodrigaño
+    Ignacio Rodriguez
+**/
+
 public class Materia {
     
     private int idMateria;
