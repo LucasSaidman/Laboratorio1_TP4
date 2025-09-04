@@ -4,17 +4,24 @@
  */
 package Vistas;
 
+import Controladores.Materia;
+import java.util.Set;
+import javax.swing.*;
+
 /**
  *
  * @author Lucas
  */
 public class VistaMateria extends javax.swing.JInternalFrame {
 
+    private final Set<Materia> materias;
+
     /**
-     * Creates new form vistaMateria
+     * Creates new form VistaMateria
      */
-    public VistaMateria() {
+    public VistaMateria(Set<Materia> materias) {
         initComponents();
+        this.materias = materias;
     }
 
     /**
@@ -26,21 +33,183 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jp_materia = new javax.swing.JPanel();
+        jl_titulo = new javax.swing.JLabel();
+        jl_codigo = new javax.swing.JLabel();
+        jtf_codigo = new javax.swing.JTextField();
+        jl_nombre = new javax.swing.JLabel();
+        jtf_nombre = new javax.swing.JTextField();
+        jl_anio = new javax.swing.JLabel();
+        jtf_anio = new javax.swing.JTextField();
+        btn_guardar = new javax.swing.JButton();
+        btn_nuevo = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
+        jl_titulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_titulo.setText("Formulario de Materias");
+
+        jl_codigo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jl_codigo.setText("Codigo de materia:");
+
+        jl_nombre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jl_nombre.setText("Nombre de la materia:");
+
+        jl_anio.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jl_anio.setText("Año al que pertenece:");
+
+        btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
+
+        btn_nuevo.setText("Nuevo");
+        btn_nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nuevoActionPerformed(evt);
+            }
+        });
+
+        btn_salir.setText("Salir");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jp_materiaLayout = new javax.swing.GroupLayout(jp_materia);
+        jp_materia.setLayout(jp_materiaLayout);
+        jp_materiaLayout.setHorizontalGroup(
+            jp_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_materiaLayout.createSequentialGroup()
+                .addGap(174, 174, 174)
+                .addGroup(jp_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_materiaLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jl_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(72, 72, 72))
+                    .addGroup(jp_materiaLayout.createSequentialGroup()
+                        .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(174, 174, 174))
+            .addGroup(jp_materiaLayout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addGroup(jp_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jl_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70)
+                .addGroup(jp_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtf_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jp_materiaLayout.setVerticalGroup(
+            jp_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_materiaLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jl_titulo)
+                .addGap(49, 49, 49)
+                .addGroup(jp_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_materiaLayout.createSequentialGroup()
+                        .addComponent(jl_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jl_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jp_materiaLayout.createSequentialGroup()
+                        .addComponent(jtf_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtf_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtf_anio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50)
+                .addGroup(jp_materiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addComponent(jp_materia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addComponent(jp_materia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        try {
+            int id = Integer.parseInt(jtf_codigo.getText().trim());
+            String nombre = jtf_nombre.getText().trim();
+            int anio = Integer.parseInt(jtf_anio.getText().trim());
+
+            if (nombre.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Complete todos los campos.");
+                return;
+            }
+
+            boolean existe = false;
+            for (Materia m : materias) {
+
+                if (m.getIdMateria() == id) {
+                    existe = true;
+                    break;
+                }
+            }
+            if (existe) {
+                JOptionPane.showMessageDialog(this, "Ya existe una materia con ese ID.");
+                return;
+            }
+
+            materias.add(new Materia(id, nombre, anio));
+            JOptionPane.showMessageDialog(this, "Materia agregada.");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Código/Año inválido.");
+        }
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
+        jtf_codigo.setText("");
+        jtf_nombre.setText("");
+        jtf_anio.setText("");
+        jtf_codigo.requestFocus();
+    }//GEN-LAST:event_btn_nuevoActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btn_salirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_guardar;
+    private javax.swing.JButton btn_nuevo;
+    private javax.swing.JButton btn_salir;
+    private javax.swing.JLabel jl_anio;
+    private javax.swing.JLabel jl_codigo;
+    private javax.swing.JLabel jl_nombre;
+    private javax.swing.JLabel jl_titulo;
+    private javax.swing.JPanel jp_materia;
+    private javax.swing.JTextField jtf_anio;
+    private javax.swing.JTextField jtf_codigo;
+    private javax.swing.JTextField jtf_nombre;
     // End of variables declaration//GEN-END:variables
 }
