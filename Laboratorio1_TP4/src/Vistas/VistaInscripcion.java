@@ -4,17 +4,85 @@
  */
 package Vistas;
 
+import Controladores.Alumno;
+import Controladores.Materia;
+import java.util.Set;
+import javax.swing.*;
+
 /**
  *
  * @author Lucas
  */
 public class VistaInscripcion extends javax.swing.JInternalFrame {
 
+    private final Set<Alumno> alumnos;
+    private final Set<Materia> materias;
+    
     /**
      * Creates new form VistaInscripcion
      */
-    public VistaInscripcion() {
+    public VistaInscripcion(Set<Alumno> alumnos, Set<Materia> materias) {
         initComponents();
+        this.alumnos = alumnos;
+        this.materias = materias;
+        
+        configurarRenderers();
+        cargarCombos();
+    }
+    
+    private void configurarRenderers() {
+        cb_alumno.setRenderer(new DefaultListCellRenderer() {
+            @Override public java.awt.Component getListCellRendererComponent(
+                    JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof Alumno a) {
+                    setText(a.getLegajo() + " - " + a.getApellido() + ", " + a.getNombre());
+                }
+                return this;
+            }
+        });
+        cb_materia.setRenderer(new DefaultListCellRenderer() {
+            @Override public java.awt.Component getListCellRendererComponent(
+                    JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof Materia m) {
+                    setText(m.getIdMateria() + " - " + m.getNombre() + " (" + m.getAnio() + "°)");
+                }
+                return this;
+            }
+        });
+    }
+
+    private void cargarCombos() {
+        DefaultComboBoxModel<String> modeloAlumno = new DefaultComboBoxModel<>();
+        for (Alumno a : alumnos){
+            modeloAlumno.addElement(String.valueOf(a.getLegajo()));
+        }
+        cb_alumno.setModel(modeloAlumno);
+
+        DefaultComboBoxModel<String> modeloMateria = new DefaultComboBoxModel<>();
+        for (Materia m : materias){
+            modeloMateria.addElement(m.getNombre());
+        }
+        cb_materia.setModel(modeloMateria);
+    }
+    
+    private Alumno buscarAlumnoPorLegajo(int legajo){
+        for(Alumno a : alumnos){
+            if(a.getLegajo() == legajo){
+                return a;
+            } 
+        }
+        return null;
+    }
+    
+    private Materia buscarMateriaPorId(String nombre){
+        for(Materia m : materias){
+            if(m.getNombre().equalsIgnoreCase(nombre)){
+                return m;
+            }
+        }
+        return null;
     }
 
     /**
@@ -26,112 +94,165 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButtonInscribir = new javax.swing.JButton();
-        jButtonSalir = new javax.swing.JButton();
+        jp_inscripcion = new javax.swing.JPanel();
+        jl_titulo = new javax.swing.JLabel();
+        jl_materia = new javax.swing.JLabel();
+        jl_alumno = new javax.swing.JLabel();
+        btn_inscribir = new javax.swing.JButton();
+        btn_salir = new javax.swing.JButton();
+        cb_materia = new javax.swing.JComboBox<>();
+        cb_alumno = new javax.swing.JComboBox<>();
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Formulario de inscripción");
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Elija un alumno:");
+        jl_titulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jl_titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jl_titulo.setText("Formulario de Inscripción");
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Elija una materia:");
+        jl_materia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jl_materia.setText("Elija una materia");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Web2", "Matematicas", "Laboratorio" }));
+        jl_alumno.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jl_alumno.setText("Elija un Alumno");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        btn_inscribir.setText("Inscribir");
+        btn_inscribir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_inscribirActionPerformed(evt);
+            }
+        });
 
-        jButtonInscribir.setText("Inscribir");
+        btn_salir.setText("Salir");
+        btn_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salirActionPerformed(evt);
+            }
+        });
 
-        jButtonSalir.setText("Salir");
+        cb_materia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_materia.setSelectedIndex(-1);
+        cb_materia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_materiaActionPerformed(evt);
+            }
+        });
 
-        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jComboBox2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButtonInscribir, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButtonSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        cb_alumno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_alumno.setSelectedIndex(-1);
+        cb_alumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_alumnoActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(27, 27, 27)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(41, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonInscribir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonSalir)
-                .addGap(27, 27, 27))
+        javax.swing.GroupLayout jp_inscripcionLayout = new javax.swing.GroupLayout(jp_inscripcion);
+        jp_inscripcion.setLayout(jp_inscripcionLayout);
+        jp_inscripcionLayout.setHorizontalGroup(
+            jp_inscripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jl_titulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jp_inscripcionLayout.createSequentialGroup()
+                .addGroup(jp_inscripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_inscripcionLayout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(btn_inscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_inscripcionLayout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addGroup(jp_inscripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jl_alumno, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jl_materia, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70)))
+                .addGroup(jp_inscripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb_materia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_alumno, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(174, 174, 174))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jp_inscripcionLayout.setVerticalGroup(
+            jp_inscripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jp_inscripcionLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jl_titulo)
+                .addGap(45, 45, 45)
+                .addGroup(jp_inscripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_materia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_materia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonInscribir)
-                    .addComponent(jButtonSalir))
-                .addGap(18, 18, 18))
+                .addGroup(jp_inscripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_alumno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_alumno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addGroup(jp_inscripcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_inscribir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
-
-        jComboBox1.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jp_inscripcion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jp_inscripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_inscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inscribirActionPerformed
+        String legajoTxt = (String) cb_alumno.getSelectedItem();
+        String nombreMateria = (String) cb_materia.getSelectedItem();
+        if (legajoTxt == null || nombreMateria == null) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar alumno y materia.");
+            return;
+        }
+        int legajo = Integer.parseInt(legajoTxt.split(" - ")[0].trim());
+        
+        try {
+            legajo = Integer.parseInt(legajoTxt.trim()); // funciona porque es solo números
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Legajo inválido: " + legajoTxt);
+            return;
+        }
+
+        Alumno a = buscarAlumnoPorLegajo(legajo);
+        Materia m = buscarMateriaPorId(nombreMateria);
+        
+        if (a == null || m == null) {
+            JOptionPane.showMessageDialog(this, "Selección inválida.");
+            return;
+        }
+        boolean ok = a.agregarMateria(m);
+        JOptionPane.showMessageDialog(this, ok ? "Inscripción exitosa." : "El alumno ya estaba inscripto en esa materia");
+    }//GEN-LAST:event_btn_inscribirActionPerformed
+
+    private void cb_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_materiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_materiaActionPerformed
+
+    private void cb_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_alumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_alumnoActionPerformed
+
+    private void btn_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btn_salirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonInscribir;
-    private javax.swing.JButton jButtonSalir;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btn_inscribir;
+    private javax.swing.JButton btn_salir;
+    private javax.swing.JComboBox<String> cb_alumno;
+    private javax.swing.JComboBox<String> cb_materia;
+    private javax.swing.JLabel jl_alumno;
+    private javax.swing.JLabel jl_materia;
+    private javax.swing.JLabel jl_titulo;
+    private javax.swing.JPanel jp_inscripcion;
     // End of variables declaration//GEN-END:variables
 }
