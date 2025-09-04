@@ -4,12 +4,30 @@
  */
 package Colegio;
 
+import Controladores.Alumno;
+import Controladores.Materia;
+import Vistas.VistaAlumno;
+import Vistas.VistaInscripcion;
+import Vistas.VistaMateria;
+import Vistas.VistaInscriptos;
+
+import java.util.HashSet;
+import javax.swing.*;
+
 /**
  *
  * @author Lucas
  */
 public class JFrame extends javax.swing.JFrame {
-
+    
+    public static final java.util.HashSet<Alumno> ALUMNOS = new HashSet<>();
+    public static final java.util.HashSet<Materia> MATERIAS = new HashSet<>();
+    
+    private Vistas.VistaAlumno vistaAlumno;
+    private Vistas.VistaMateria vistaMateria;
+    private Vistas.VistaInscripcion vistaInscripcion;
+    private Vistas.VistaInscriptos vistaInscriptos;
+        
     /**
      * Creates new form JFrame
      */
@@ -26,54 +44,89 @@ public class JFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        JmAlumno = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        JmMateria = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        JmRegistro = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        JmSalir = new javax.swing.JMenu();
+        Escritorio = new javax.swing.JDesktopPane();
+        jmb_menu = new javax.swing.JMenuBar();
+        jm_alumno = new javax.swing.JMenu();
+        jmi_agregar_alumno = new javax.swing.JMenuItem();
+        jm_materia = new javax.swing.JMenu();
+        jmi_agregar_materia = new javax.swing.JMenuItem();
+        jm_registro = new javax.swing.JMenu();
+        jmi_inscripcion_materias = new javax.swing.JMenuItem();
+        jmi_lista = new javax.swing.JMenuItem();
+        jm_salir = new javax.swing.JMenu();
+        jmi_salir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
+        Escritorio.setLayout(EscritorioLayout);
+        EscritorioLayout.setHorizontalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 800, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        EscritorioLayout.setVerticalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
         );
 
-        JmAlumno.setText("Alumno");
+        jm_alumno.setText("Alumno");
 
-        jMenuItem1.setText("Agregar Alumno");
-        JmAlumno.add(jMenuItem1);
+        jmi_agregar_alumno.setText("Agregar Alumno");
+        jmi_agregar_alumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_agregar_alumnoActionPerformed(evt);
+            }
+        });
+        jm_alumno.add(jmi_agregar_alumno);
 
-        jMenuBar1.add(JmAlumno);
+        jmb_menu.add(jm_alumno);
 
-        JmMateria.setText("Materia");
+        jm_materia.setText("Materia");
 
-        jMenuItem2.setText("Agregar Materia");
-        JmMateria.add(jMenuItem2);
+        jmi_agregar_materia.setText("Agregar Materia");
+        jmi_agregar_materia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_agregar_materiaActionPerformed(evt);
+            }
+        });
+        jm_materia.add(jmi_agregar_materia);
 
-        jMenuBar1.add(JmMateria);
+        jmb_menu.add(jm_materia);
 
-        JmRegistro.setText("Registro");
+        jm_registro.setText("Registro");
 
-        jMenuItem3.setText("Inscripcion a Materias");
-        JmRegistro.add(jMenuItem3);
+        jmi_inscripcion_materias.setText("Inscripcion a Materias");
+        jmi_inscripcion_materias.setToolTipText("");
+        jmi_inscripcion_materias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_inscripcion_materiasActionPerformed(evt);
+            }
+        });
+        jm_registro.add(jmi_inscripcion_materias);
 
-        jMenuBar1.add(JmRegistro);
+        jmi_lista.setText("Lista");
+        jmi_lista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_listaActionPerformed(evt);
+            }
+        });
+        jm_registro.add(jmi_lista);
 
-        JmSalir.setText("Salir");
-        jMenuBar1.add(JmSalir);
+        jmb_menu.add(jm_registro);
 
-        setJMenuBar(jMenuBar1);
+        jm_salir.setText("Salir");
+
+        jmi_salir.setText("Salir");
+        jmi_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_salirActionPerformed(evt);
+            }
+        });
+        jm_salir.add(jmi_salir);
+
+        jmb_menu.add(jm_salir);
+
+        setJMenuBar(jmb_menu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,20 +134,56 @@ public class JFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane1)
+                .addComponent(Escritorio)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jDesktopPane1)
+                .addComponent(Escritorio)
                 .addContainerGap())
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jmi_agregar_alumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_agregar_alumnoActionPerformed
+        if(vistaAlumno == null || vistaAlumno.isClosed()){
+            vistaAlumno = new Vistas.VistaAlumno(ALUMNOS);
+            Escritorio.add(vistaAlumno);
+            vistaAlumno.setVisible(true);
+        }
+    }//GEN-LAST:event_jmi_agregar_alumnoActionPerformed
+
+    private void jmi_agregar_materiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_agregar_materiaActionPerformed
+        if(vistaMateria == null || vistaMateria.isClosed()){
+            vistaMateria = new Vistas.VistaMateria(MATERIAS);
+            Escritorio.add(vistaMateria);
+            vistaMateria.setVisible(true);
+        }
+    }//GEN-LAST:event_jmi_agregar_materiaActionPerformed
+
+    private void jmi_inscripcion_materiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_inscripcion_materiasActionPerformed
+        if(vistaInscripcion == null || vistaInscripcion.isClosed()){
+            vistaInscripcion = new Vistas.VistaInscripcion(ALUMNOS, MATERIAS);
+            Escritorio.add(vistaInscripcion);
+            vistaInscripcion.setVisible(true);
+        }
+    }//GEN-LAST:event_jmi_inscripcion_materiasActionPerformed
+
+    private void jmi_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_salirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jmi_salirActionPerformed
+
+    private void jmi_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_listaActionPerformed
+        if (vistaInscriptos == null || vistaInscriptos.isClosed()) {
+            vistaInscriptos = new Vistas.VistaInscriptos(ALUMNOS);
+            Escritorio.add(vistaInscriptos);
+            vistaInscriptos.setVisible(true);
+        }
+    }//GEN-LAST:event_jmi_listaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,14 +221,16 @@ public class JFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu JmAlumno;
-    private javax.swing.JMenu JmMateria;
-    private javax.swing.JMenu JmRegistro;
-    private javax.swing.JMenu JmSalir;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JDesktopPane Escritorio;
+    private javax.swing.JMenu jm_alumno;
+    private javax.swing.JMenu jm_materia;
+    private javax.swing.JMenu jm_registro;
+    private javax.swing.JMenu jm_salir;
+    private javax.swing.JMenuBar jmb_menu;
+    private javax.swing.JMenuItem jmi_agregar_alumno;
+    private javax.swing.JMenuItem jmi_agregar_materia;
+    private javax.swing.JMenuItem jmi_inscripcion_materias;
+    private javax.swing.JMenuItem jmi_lista;
+    private javax.swing.JMenuItem jmi_salir;
     // End of variables declaration//GEN-END:variables
 }
