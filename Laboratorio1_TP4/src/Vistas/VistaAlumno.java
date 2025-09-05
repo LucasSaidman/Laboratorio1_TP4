@@ -9,8 +9,15 @@ import java.util.Set;
 import javax.swing.*;
 
 /**
- *
- * @author Lucas
+    @author Grupo 6 
+    Luis Ezequiel Sosa
+    Lucas Saidman
+    Gimenez Diego Ruben
+    Carlos German Mecias Giacomelli
+    Tomas Migliozzi Badani
+    Luca Rodrigaño
+    Ignacio Rodriguez
+ 
  */
 public class VistaAlumno extends javax.swing.JInternalFrame {
 
