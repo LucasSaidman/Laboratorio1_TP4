@@ -9,10 +9,16 @@ import Controladores.Materia;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Lucas
- */
+/** 
+    @author Grupo 6 
+    Luis Ezequiel Sosa
+    Lucas Saidman
+    Gimenez Diego Ruben
+    Carlos German Mecias Giacomelli
+    Tomas Migliozzi Badani
+    Luca Rodrigaño
+    Ignacio Rodriguez
+**/
 public class VistaInscriptos extends javax.swing.JInternalFrame {
     
     private final Set<Alumno> alumnos;
